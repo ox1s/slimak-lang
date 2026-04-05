@@ -32,6 +32,7 @@ fn next_token_test(
 fn test_complex_input() {
     let input = "няхай пяць = 5;
 няхай дзесяць = 10;
+
 няхай дадаць = праца(а, б)
 {
    а + б;
@@ -54,7 +55,7 @@ fn test_complex_input() {
         (TokenType::Int, "10"),
         (TokenType::Semicolon, ";"),
         (TokenType::Let, "няхай"),
-        (TokenType::Plus, "дадаць"),
+        (TokenType::Ident, "дадаць"),
         (TokenType::Assign, "="),
         (TokenType::Function, "праца"),
         (TokenType::LParen, "("),
@@ -67,7 +68,7 @@ fn test_complex_input() {
         (TokenType::Plus, "+"),
         (TokenType::Ident, "б"),
         (TokenType::Semicolon, ";"),
-        (TokenType::LBrace, "}"),
+        (TokenType::RBrace, "}"),
         (TokenType::Semicolon, ";"),
     ];
 

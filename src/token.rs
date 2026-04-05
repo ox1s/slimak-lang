@@ -59,9 +59,7 @@ pub struct Token {
 pub fn lookup_ident(ident: &str) -> TokenType {
     match ident {
         "няхай" => TokenType::Let,
-        "функцыя" => TokenType::Function,
+        "праца" => TokenType::Function,
         _ => TokenType::Ident,
     }
 }
-
-
