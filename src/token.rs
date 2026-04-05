@@ -35,7 +35,7 @@ pub fn value_of_token_type(token_type: TokenType) -> &'static str {
         TokenType::Minus => "-",
         TokenType::Bang => "!",
         TokenType::Asterisk => "*",
-        TokenType::Slash => "-",
+        TokenType::Slash => "/",
         TokenType::Lt => "<",     // менш чым
         TokenType::Gt => ">",     // больш чым
         TokenType::Eq => "==",    //роўны
@@ -59,36 +59,9 @@ pub struct Token {
 pub fn lookup_ident(ident: &str) -> TokenType {
     match ident {
         "няхай" => TokenType::Let,
+        "функцыя" => TokenType::Function,
         _ => TokenType::Ident,
     }
 }
 
-// pub const ILLEGAL: &str = "ILLEGAL";
-// pub const EOF: &str = "EOF";
 
-// pub const IDENT: &str = "IDENT";
-// pub const INT: &str = "INT";
-
-// pub const ASSIGN: &str = "=";
-// pub const PLUS: &str = "+";
-// pub const MINUS: &str = "-";
-// pub const BANG: &str = "!";
-// pub const ASTERISK: &str = "*";
-// pub const SLASH: &str = "/";
-
-// pub const LT: &str = "<";
-// pub const GT: &str = ">";
-
-// pub const EQ: &str = "==";
-// pub const NOT_EQ: &str = "!=";
-
-// pub const SEMICOLON: &str = ";";
-// pub const COMMA: &str = ",";
-
-// pub const LPAREN: &str = "(";
-// pub const RPAREN: &str = ")";
-// pub const LBRACE: &str = "{";
-// pub const RBRACE: &str = "}";
-
-// pub const FUNCTION: &str = "FUNCTION";
-// pub const LET: &str = "LET";

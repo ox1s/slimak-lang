@@ -47,6 +47,12 @@ impl Lexer {
             '+' => tok = self.new_token(token::TokenType::Plus, self.ch),
             '{' => tok = self.new_token(token::TokenType::LBrace, self.ch),
             '}' => tok = self.new_token(token::TokenType::RBrace, self.ch),
+            '/' => tok = self.new_token(token::TokenType::Slash, self.ch),
+            '-' => tok = self.new_token(token::TokenType::Minus, self.ch),
+            '>' => tok = self.new_token(token::TokenType::Gt, self.ch),
+            '<' => tok = self.new_token(token::TokenType::Lt, self.ch),
+            '!' => tok = self.new_token(token::TokenType::Bang, self.ch),
+            '*' => tok = self.new_token(token::TokenType::Asterisk, self.ch),
             '\0' => {
                 tok.type_of = token::TokenType::Eof;
                 tok.literal = '\0'.to_string();
@@ -70,11 +76,11 @@ impl Lexer {
         tok
     }
 
-    fn read_number(&mut self) -> char {
+    fn read_number(&mut self) -> char { // only integers
         while self.ch.is_numeric() {
             self.read_char();
         }
-        return self.input[self.position];
+        self.input[self.position]
     }
     fn skip_whitespace(&mut self) {
         while self.ch == ' ' || self.ch == '\t' || self.ch == '\n' || self.ch == '\r' {
@@ -85,7 +91,7 @@ impl Lexer {
         while self.ch.is_alphabetic() || self.ch == '_' {
             self.read_char();
         }
-        return self.input[self.position];
+        self.input[self.position]
     }
     pub fn new_token(&self, token_type: token::TokenType, ch: char) -> Token {
         Token {
