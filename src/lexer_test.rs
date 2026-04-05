@@ -39,7 +39,7 @@ fn test_complex_input() {
 };
 
 няхай вынiк = дадаць(пяць, дзесяць);
-!-/*5
+!-/*5;
 5 < 10 > 5;
 
 калi (5 < 10)
@@ -50,6 +50,9 @@ fn test_complex_input() {
 {
     вяртаць хлусня;
 }
+
+10 == 10;
+10 != 9;
 ";
 
     let tests = vec![
@@ -78,6 +81,55 @@ fn test_complex_input() {
         (TokenType::Ident, "б"),
         (TokenType::Semicolon, ";"),
         (TokenType::RBrace, "}"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::Let, "няхай"),
+        (TokenType::Ident, "вынiк"),
+        (TokenType::Assign, "="),
+        (TokenType::Ident, "дадаць"),
+        (TokenType::LParen, "("),
+        (TokenType::Ident, "пяць"),
+        (TokenType::Comma, ","),
+        (TokenType::Ident, "дзесяць"),
+        (TokenType::RParen, ")"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::Bang, "!"),
+        (TokenType::Minus, "-"),
+        (TokenType::Slash, "/"),
+        (TokenType::Asterisk, "*"),
+        (TokenType::Int, "5"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::Int, "5"),
+        (TokenType::Lt, "<"),
+        (TokenType::Int, "10"),
+        (TokenType::Gt, ">"),
+        (TokenType::Int, "5"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::If, "калi"),
+        (TokenType::LParen, "("),
+        (TokenType::Int, "5"),
+        (TokenType::Lt, "<"),
+        (TokenType::Int, "10"),
+        (TokenType::RParen, ")"),
+        (TokenType::LBrace, "{"),
+        (TokenType::Return, "вяртаць"),
+        (TokenType::True, "праўда"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::RBrace, "}"),
+        (TokenType::Else, "інш"),
+        (TokenType::LBrace, "{"),
+        (TokenType::Return, "вяртаць"),
+        (TokenType::False, "хлусня"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::RBrace, "}"),
+        (TokenType::Int, "10"),
+        (TokenType::Assign, "="),
+        (TokenType::Assign, "="),
+        (TokenType::Int, "10"),
+        (TokenType::Semicolon, ";"),
+        (TokenType::Int, "10"),
+        (TokenType::Bang, "!"),
+        (TokenType::Assign, "="),
+        (TokenType::Int, "9"),
         (TokenType::Semicolon, ";"),
     ];
 
