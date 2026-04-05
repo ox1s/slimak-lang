@@ -22,6 +22,11 @@ pub enum TokenType {
     RBrace,
     Function,
     Let,
+    If,
+    Else,
+    Return,
+    True,
+    False,
 }
 
 pub fn value_of_token_type(token_type: TokenType) -> &'static str {
@@ -48,6 +53,11 @@ pub fn value_of_token_type(token_type: TokenType) -> &'static str {
         TokenType::RBrace => "}",
         TokenType::Function => "ФУНКЦЫЯ",
         TokenType::Let => "НЯХАЙ",
+        TokenType::If => "КАЛI",
+        TokenType::Else => "IНШ",
+        TokenType::Return => "ВЯРТАЦЬ",
+        TokenType::True => "ПРАЎДА",
+        TokenType::False => "ХЛУСНЯ",
     }
 }
 
@@ -60,6 +70,11 @@ pub fn lookup_ident(ident: &str) -> TokenType {
     match ident {
         "няхай" => TokenType::Let,
         "праца" => TokenType::Function,
+        "праўда" => TokenType::True,
+        "хлусня" => TokenType::False,
+        "калi" => TokenType::If,
+        "інш" => TokenType::Else,
+        "вяртаць" => TokenType::Return,
         _ => TokenType::Ident,
     }
 }
