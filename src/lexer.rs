@@ -39,7 +39,19 @@ impl Lexer {
         self.skip_whitespace();
 
         match self.ch {
-            '=' => tok = self.new_token(token::TokenType::Assign, self.ch),
+            '=' => {
+                if self.peek_char() == '=' {
+                    // TODO: Ошибка
+                    let ch1 = self.ch;
+                    self.read_char();
+                    let literal = ch1.to_string() + &String::from(self.ch);
+                    tok = token::Token {
+                        type_of: token::TokenType::Eq,
+                        literal: literal,
+                    }
+                }
+                tok = self.new_token(token::TokenType::Assign, self.ch)
+            }
             ';' => tok = self.new_token(token::TokenType::Semicolon, self.ch),
             '(' => tok = self.new_token(token::TokenType::LParen, self.ch),
             ')' => tok = self.new_token(token::TokenType::RParen, self.ch),
@@ -74,6 +86,14 @@ impl Lexer {
 
         self.read_char();
         tok
+    }
+
+    fn peek_char(self) -> char {
+        if self.read_position >= self.input.len() {
+            '0'
+        } else {
+            self.input[self.read_position]
+        }
     }
 
     fn read_number(&mut self) -> Vec<char> {
