@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub enum TokenType {
     Illegal,
@@ -28,7 +30,11 @@ pub enum TokenType {
     True,
     False,
 }
-
+impl fmt::Display for TokenType {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{:#?}", self)
+    }
+}
 pub fn value_of_token_type(token_type: TokenType) -> &'static str {
     match token_type {
         TokenType::Illegal => "НЕЗАКОННА", // незаконна
@@ -65,7 +71,11 @@ pub struct Token {
     pub type_of: TokenType,
     pub literal: String,
 }
-
+impl fmt::Display for Token {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.type_of, self.literal)
+    }
+}
 pub fn lookup_ident(ident: &str) -> TokenType {
     match ident {
         "няхай" => TokenType::Let,

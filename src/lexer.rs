@@ -41,16 +41,15 @@ impl Lexer {
         match self.ch {
             '=' => {
                 if self.peek_char() == '=' {
-                    // TODO: Ошибка
-                    let ch1 = self.ch;
+                    let ch = self.ch;
                     self.read_char();
-                    let literal = ch1.to_string() + &String::from(self.ch);
                     tok = token::Token {
                         type_of: token::TokenType::Eq,
-                        literal: literal,
+                        literal: ch.to_string() + &self.ch.to_string(),
                     }
+                } else {
+                    tok = self.new_token(token::TokenType::Assign, self.ch)
                 }
-                tok = self.new_token(token::TokenType::Assign, self.ch)
             }
             ';' => tok = self.new_token(token::TokenType::Semicolon, self.ch),
             '(' => tok = self.new_token(token::TokenType::LParen, self.ch),
@@ -63,7 +62,18 @@ impl Lexer {
             '-' => tok = self.new_token(token::TokenType::Minus, self.ch),
             '>' => tok = self.new_token(token::TokenType::Gt, self.ch),
             '<' => tok = self.new_token(token::TokenType::Lt, self.ch),
-            '!' => tok = self.new_token(token::TokenType::Bang, self.ch),
+            '!' => {
+                if self.peek_char() == '=' {
+                    let ch = self.ch;
+                    self.read_char();
+                    tok = token::Token {
+                        type_of: token::TokenType::NotEq,
+                        literal: ch.to_string() + &self.ch.to_string(),
+                    }
+                } else {
+                    tok = self.new_token(token::TokenType::Bang, self.ch)
+                }
+            }
             '*' => tok = self.new_token(token::TokenType::Asterisk, self.ch),
             '\0' => {
                 tok.type_of = token::TokenType::Eof;
@@ -88,7 +98,7 @@ impl Lexer {
         tok
     }
 
-    fn peek_char(self) -> char {
+    fn peek_char(&self) -> char {
         if self.read_position >= self.input.len() {
             '0'
         } else {
