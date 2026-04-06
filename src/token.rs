@@ -35,7 +35,7 @@ impl fmt::Display for TokenType {
         write!(f, "{:#?}", self)
     }
 }
-pub fn value_of_token_type(token_type: TokenType) -> &'static str {
+fn value_of_token_type(token_type: TokenType) -> &'static str {
     match token_type {
         TokenType::Illegal => "НЕЗАКОННА", // незаконна
         TokenType::Eof => "КР",            // канец радка

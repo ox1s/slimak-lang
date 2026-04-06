@@ -1,3 +1,4 @@
+mod ast;
 mod lexer;
 mod lexer_test;
 mod repl;

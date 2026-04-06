@@ -1,5 +1,4 @@
-use crate::lexer::Lexer;
-use crate::token::TokenType;
+use crate::{lexer::Lexer, token::TokenType};
 use rstest::rstest;
 
 #[rstest]

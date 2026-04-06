@@ -8,7 +8,7 @@ const PROMT: &str = ">> ";
 pub fn start() {
     loop {
         let mut line = String::new();
-        print!("{}", PROMT);
+        print!("{}", &PROMT);
 
         stdout().flush().expect("Failed to flush stdout");
 
